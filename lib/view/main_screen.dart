@@ -1,8 +1,8 @@
-import 'package:animal_encyclopedia_app/model/animal.dart';
-import 'package:animal_encyclopedia_app/view/detail_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../data/animal_data.dart';
+import '../model/animal.dart';
+import '../view/detail_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -12,6 +12,24 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  List<Animal> _foundAnimalData = animalDataList;
+
+  void _onSearch(String keyword) {
+    List<Animal> result = [];
+
+    if (keyword.isEmpty) {
+      result = animalDataList;
+    } else {
+      result = animalDataList
+          .where(
+              (data) => data.name.toLowerCase().contains(keyword.toLowerCase()))
+          .toList();
+    }
+    setState(() {
+      _foundAnimalData = result;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,6 +48,16 @@ class _MainScreenState extends State<MainScreen> {
           margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             children: [
+              TextField(
+                decoration: const InputDecoration(
+                    suffixIcon: Icon(Icons.search),
+                    border: UnderlineInputBorder(),
+                    labelText: 'Search'),
+                onChanged: (value) {
+                  _onSearch(value);
+                },
+              ),
+              const SizedBox(height: 20),
               Expanded(
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -38,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
                     crossAxisSpacing: 8,
                   ),
                   itemBuilder: (context, index) {
-                    final Animal animal = animalDataList[index];
+                    final Animal animal = _foundAnimalData[index];
                     return InkWell(
                       onTap: () {
                         Navigator.push(
@@ -49,10 +77,15 @@ class _MainScreenState extends State<MainScreen> {
                         );
                       },
                       child: Card(
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                            color: Colors.black.withOpacity(0.25),
+                          ),
+                        ),
                         child: Column(
                           children: [
                             Expanded(
-                              flex: 4,
+                              flex: 5,
                               child: Image.asset(
                                 animal.photo[0],
                                 width: 200,
@@ -61,7 +94,7 @@ class _MainScreenState extends State<MainScreen> {
                               ),
                             ),
                             Expanded(
-                              flex: 2,
+                              flex: 3,
                               child: Padding(
                                 padding:
                                     const EdgeInsets.only(left: 8.0, top: 4.0),
@@ -72,6 +105,7 @@ class _MainScreenState extends State<MainScreen> {
                                     Text(
                                       animal.name,
                                       style: const TextStyle(
+                                        fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -86,7 +120,7 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                     );
                   },
-                  itemCount: animalDataList.length,
+                  itemCount: _foundAnimalData.length,
                 ),
               ),
             ],

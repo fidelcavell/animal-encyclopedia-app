@@ -49,22 +49,30 @@ class DetailScreen extends StatelessWidget {
             ],
           ),
           Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    animal.name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                    ),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  animal.name,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
                   ),
-                  Text(animal.tag.join(', ')),
-                  Text(animal.desc),
-                ],
-              )),
+                ),
+                Text(
+                  animal.tag.join(', '),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(animal.desc),
+              ],
+            ),
+          ),
         ],
       ),
     );
