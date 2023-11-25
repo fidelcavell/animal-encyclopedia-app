@@ -41,24 +41,28 @@ class _MainScreenState extends State<MainScreen> {
       home: Scaffold(
         appBar: AppBar(
           title: const Center(
-            child: Text('Animal Encyclopedia'),
+            child: Text('Animal Ensyclopedia'),
           ),
         ),
         body: Container(
           margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             children: [
-              TextField(
-                decoration: const InputDecoration(
-                    suffixIcon: Icon(Icons.search),
-                    border: UnderlineInputBorder(),
-                    labelText: 'Search'),
-                onChanged: (value) {
-                  _onSearch(value);
-                },
-              ),
-              const SizedBox(height: 20),
               Expanded(
+                flex: 1,
+                child: TextField(
+                  decoration: const InputDecoration(
+                      suffixIcon: Icon(Icons.search),
+                      border: UnderlineInputBorder(),
+                      labelText: 'Search'),
+                  onChanged: (value) {
+                    _onSearch(value);
+                  },
+                ),
+              ),
+              const SizedBox(height: 15),
+              Expanded(
+                flex: 7,
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
@@ -88,7 +92,7 @@ class _MainScreenState extends State<MainScreen> {
                               flex: 5,
                               child: Image.asset(
                                 animal.photo[0],
-                                width: 200,
+                                width: double.infinity,
                                 height: 400,
                                 fit: BoxFit.fill,
                               ),
