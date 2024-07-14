@@ -1,16 +1,7 @@
-# animal_encyclopedia_app
+- ## animal encyclopedia app
+  A flutter application to display a static list of animal information with Search features and Image Slider
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- ## Preview
+  <img alt="Main Screen" src="https://github.com/user-attachments/assets/20cb85ea-0738-4e96-9fa4-0e8e7452fb91" width="33%" />
+  <img alt="Main Screen" src="https://github.com/user-attachments/assets/017616f4-5f88-4249-b53e-4c55c069bdbb" width="33%" />
+  <img alt="Main Screen" src="https://github.com/user-attachments/assets/351dd6e2-f180-48d2-9f45-9ced010cd696" width="33%" />
